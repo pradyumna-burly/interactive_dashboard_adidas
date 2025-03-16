@@ -2,48 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>Full-Screen Excel Dashboard</title>
     <style>
-        /* Complete reset and full-screen setup */
+        /* Complete CSS reset */
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden; /* Prevent any scrollbars */
+            overflow: hidden;
+            position: fixed;
+            background: #f4f4f9;
         }
 
-        /* Full-screen container */
+        /* Full-screen container with overflow control */
         .container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            margin: 0;
-            padding: 0;
+            top: -15px;
+            left: -15px;
+            width: calc(100% + 30px);
+            height: calc(100% + 30px);
+            overflow: hidden;
+            transform: scale(0.965);
+            transform-origin: top left;
         }
 
-        /* Full-screen iframe */
+        /* Iframe styling with zoom compensation */
         iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            width: calc(100% + 30px);
+            height: calc(100% + 30px);
             border: none;
             margin: 0;
             padding: 0;
-            display: block; /* Remove inline element spacing */
+            transform: scale(1.035);
+            transform-origin: 0 0;
+            pointer-events: auto;
+        }
+
+        /* Mobile touch behavior control */
+        @media (hover: none) and (pointer: coarse) {
+            .container {
+                touch-action: none;
+                -webkit-overflow-scrolling: auto;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <iframe 
-            src="https://onedrive.live.com/embed?resid=7802B28B69080BF4%2119384&authkey=%21AFum8Khb0qO9530&em=2&wdAllowInteractivity=True&ActiveCell='Dashboard'!A1&Item='Dashboard'!A1%3AAB32&wdHideGridlines=True&wdDownloadButton=True&wdInConfigurator=True&wdHideHeaders=True&wdHideSheetTabs=True">
+            src="https://onedrive.live.com/embed?resid=7802B28B69080BF4%2119384&authkey=%21AFum8Khb0qO9530&em=2&AllowTyping=False&wdAllowInteractivity=True&ActiveCell='Dashboard'!A1&Item='Dashboard'!A1%3AAB32&wdHideGridlines=True&wdDownloadButton=False&wdHideHeaders=True&wdHideSheetTabs=True&wdHideBorder=True&wdHideFormulaBar=True&wdHideWorkbookViews=True&wdEmbedCode=True">
         </iframe>
     </div>
 </body>
