@@ -5,38 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Full-Screen Excel Dashboard</title>
     <style>
-        /* General reset and layout */
+        /* Complete reset and full-screen setup */
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow: hidden; /* Prevent any scrollbars */
         }
 
-        /* Container for the iframe */
+        /* Full-screen container */
         .container {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            overflow: hidden; /* Ensure no scrollbars */
+            border: none;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Styling for the iframe */
+        /* Full-screen iframe */
         iframe {
-            width: 100vw; /* Viewport width */
-            height: 100vh; /* Viewport height */
-            border: none; /* Remove iframe border */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            margin: 0;
+            padding: 0;
+            display: block; /* Remove inline element spacing */
         }
     </style>
 </head>
 <body>
     <div class="container">
         <iframe 
-            src="https://onedrive.live.com/embed?resid=7802B28B69080BF4%2119384&authkey=%21AFum8Khb0qO9530&em=2&wdAllowInteractivity=True&ActiveCell='Dashboard'!A1&Item='Dashboard'!A1%3AAB32&wdHideGridlines=True&wdDownloadButton=True&wdInConfigurator=True">
+            src="https://onedrive.live.com/embed?resid=7802B28B69080BF4%2119384&authkey=%21AFum8Khb0qO9530&em=2&wdAllowInteractivity=True&ActiveCell='Dashboard'!A1&Item='Dashboard'!A1%3AAB32&wdHideGridlines=True&wdDownloadButton=True&wdInConfigurator=True&wdHideHeaders=True&wdHideSheetTabs=True">
         </iframe>
     </div>
 </body>
