@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Excel Dashboard Viewer</title>
+    <title>Excel Dashboard</title>
     <style>
         html, body {
             margin: 0;
@@ -12,44 +12,63 @@
             height: 100%;
             overflow: hidden;
             position: fixed;
+            background: #f4f4f9;
         }
 
         .container {
             position: fixed;
-            top: -8px;
-            left: -8px;
-            width: calc(100% + 16px);
-            height: calc(100% + 16px);
+            top: -9px;
+            left: -9px;
+            width: calc(100% + 18px);
+            height: calc(100% + 18px);
             overflow: hidden;
-            transform: scale(0.98);
+            transform: scale(0.965);
             transform-origin: top left;
+            clip-path: inset(8px 7px 8px 7px);
         }
 
         iframe {
-            width: calc(100% + 20px);
-            height: calc(100% + 20px);
+            width: calc(100% + 24px);
+            height: calc(100% + 24px);
             border: none;
-            transform: scale(1.02);
+            transform: scale(1.04);
             transform-origin: 0 0;
-            pointer-events: auto;
+            filter: brightness(1.05) contrast(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                top: -12px !important;
+                left: -12px !important;
+                transform: scale(0.92) !important;
+            }
+            iframe {
+                transform: scale(1.15) !important;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <iframe src="https://onedrive.live.com/embed?resid=7802B28B69080BF4%2119384&authkey=%21AFum8Khb0qO9530&em=2&wdAllowInteractivity=True&ActiveCell='Dashboard'!A1&Item='Dashboard'!A1%3AAB31&wdHideGridlines=True&wdDownloadButton=False&wdHideHeaders=True&wdHideSheetTabs=True&wdHideBorder=True&wdHideFormulaBar=True&wdInConfigurator=True&wdframeborder=0&wdView=2"></iframe>
+        <iframe src="https://onedrive.live.com/embed?resid=7802B28B69080BF4%2119384&authkey=%21AFum8Khb0qO9530&em=2&activeCell='Dashboard'!A1&Item='Dashboard'!A1%3AAB31&wdHideGridlines=True&wdHideHeaders=True&wdHideSheetTabs=True&wdHideBorder=True&wdZoom=0.82"></iframe>
     </div>
 
     <script>
-        // Mobile viewport hack
-        (function() {
-            function resetViewport() {
-                const meta = document.querySelector('meta[name="viewport"]');
-                meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+        // Dynamic scaling
+        function updateScale() {
+            const container = document.querySelector('.container');
+            const aspectRatio = 28/31; // Columns/Rows ratio
+            const screenRatio = window.innerWidth/window.innerHeight;
+            
+            if(screenRatio > aspectRatio) {
+                container.style.transform = `scale(${window.innerHeight/(31*22)})`; // 22px per row assumption
+            } else {
+                container.style.transform = `scale(${window.innerWidth/(28*64)})`; // 64px per column assumption
             }
-            window.addEventListener('resize', resetViewport);
-            resetViewport();
-        })();
+        }
+
+        window.addEventListener('resize', updateScale);
+        window.addEventListener('load', updateScale);
     </script>
 </body>
 </html>
